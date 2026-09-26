@@ -21,7 +21,18 @@ class ScreenActivity : HgActivity() {
 
     private lateinit var image: ImageView
     private lateinit var status: TextView
-    private val pending = AtomicReference<String?>(null)
+    /*
+     * "/screen on" se shuru hota hai, khaali se nahi.
+     *
+     * Menu ("Screen") is screen tak seedha le aata hai bina doosre phone ko
+     * kabhi ye batae ki "screen dikhana shuru karo" - sirf home screen ka
+     * button (MainActivity.btn_screen) ye command bhejta tha. Nateeja: menu
+     * se aane par doosra phone kabhi ScreenService start hi nahi karta tha,
+     * aur screen hamesha kaali reh jaati - koi error bhi nahi, bas "wait"
+     * likha rehta. Ab loop() ka pehla chakkar khud ye command bhej deta hai,
+     * chahe is screen tak aaye kaise bhi ho.
+     */
+    private val pending = AtomicReference<String?>("/screen on")
     @Volatile private var generation = 0
     private var shown = 0
 
