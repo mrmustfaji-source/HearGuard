@@ -50,6 +50,20 @@ class SettingsActivity : HgActivity() {
             root.addView(button(UiPref.t(this, "Allow shell", "Shell ki ijazat")) {
                 Shell.requestShizukuPermission()
             })
+        } else if (!Shell.shizukuRunning()) {
+            root.addView(button(UiPref.t(this, "Open Shizuku", "Shizuku app kholo")) {
+                if (!Shell.openShizukuApp(this)) {
+                    android.widget.Toast.makeText(
+                        this,
+                        UiPref.t(
+                            this,
+                            "Shizuku app installed nahi hai.",
+                            "Shizuku app installed nahi hai."
+                        ),
+                        android.widget.Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
         }
         setContentView(ScrollView(this).apply { addView(root) })
     }

@@ -158,15 +158,14 @@ class LinkActivity : HgActivity() {
     /* ---------------- Jo control karega ---------------- */
 
     private fun renderController() {
+        container.addView(button(getString(R.string.send_apk_button)) { SendLink.shareApk(this) })
         container.addView(button(getString(R.string.send_link_button)) {
-            SendLink.share(this) { sent ->
-                runOnUiThread {
-                    linkShown?.text = sent
-                }
+            SendLink.sharePairing(this) { sent ->
+                runOnUiThread { linkShown?.text = sent }
             }
         })
         linkShown = TextView(this).apply {
-            text = "Is button se WhatsApp khulega. Pehli link APK download karegi. Samsung par Install dabao."
+            text = "Pehle button se app ki download link jayegi (ek hi baar chahiye). Doosre se pairing code - naya phone jodna ho tab bhi ye dabao."
             textSize = 15f
             setPadding(0, dp(8), 0, dp(12))
         }

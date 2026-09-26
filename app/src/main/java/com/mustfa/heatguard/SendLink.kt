@@ -1,11 +1,24 @@
 package com.mustfa.heatguard
 
 /*
- * Is phone se doosre phone ko app bhejna.
+ * Is phone se doosre phone ko app bhejna - do ALAG links, do ALAG buttons.
  *
- * Android background mein APK install nahi karne deta. Isliye yahan file
- * WhatsApp wagairah se jaati hai, aur doosre phone par ek baar Install
- * dabana padta hai. Code message mein hota hai, taaki type na karna pade.
+ * Pehle ye ek hi message mein APK aur pairing code dono bhejta tha. User ne
+ * saaf mana kiya: "voh link alag banao aur download ka link alag se banao".
+ * Ab do kaam, do buttons:
+ *
+ *   1. shareApk()      -> sirf APK download karne ki link (GitHub Releases)
+ *   2. sharePairing()  -> sirf pairing code/link (ntfy/deep-link wala)
+ *
+ * Pehla ek hi baar chahiye (jab tak app update na ho). Doosra tab tak jab
+ * naya phone jodna ho.
+ *
+ * APK GitHub Releases se aati hai, ntfy.sh se nahi (14MB ki seemaa thi aur
+ * kabhi-kabhi expire ho jaati). Wo hi ek link hamesha sabse NAYI build
+ * deti hai - "iski-wajah-se" agar naya build banega, link wahi rahegi,
+ * bas file peeche se badal jaati hai. Ye kaam BUILD_AND_INSTALL.bat
+ * karta hai (publish-github-release.ps1 ke zariye), Android app khud
+ * kabhi apna APK GitHub par nahi chadhati.
  */
 
 import android.app.Activity
@@ -13,60 +26,35 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
 import android.widget.Toast
-import org.json.JSONObject
-import java.io.File
-import java.net.HttpURLConnection
-import java.net.URL
 
 object SendLink {
 
-    fun share(activity: Activity, done: (String) -> Unit = {}) {
+    /**
+     * Static hai - build script hi is jagah par naya APK chadhata hai. App
+     * khud isse kabhi nahi badalti, isliye ek constant kaafi hai.
+     */
+    private const val APK_URL =
+        "https://github.com/mrmustfaji-source/HearGuard/releases/latest/download/heatguard.apk"
+
+    /** Button 1: doosre phone ko sirf app ki download link bhejo. */
+    fun shareApk(activity: Activity) {
+        val text = activity.getString(R.string.send_apk_message, APK_URL)
+        activity.getSystemService(ClipboardManager::class.java)
+            ?.setPrimaryClip(ClipData.newPlainText("Heat Guard", text))
+        shareText(activity, text)
+    }
+
+    /** Button 2: doosre phone ko sirf pairing code/link bhejo. */
+    fun sharePairing(activity: Activity, done: (String) -> Unit = {}) {
         if (Link.code(activity).isBlank()) Link.newCode(activity)
         Link.setRole(activity, LinkRole.CONTROLLER)
         val code = Link.code(activity)
-        val join = "https://heatguard.app/p/$code"
-        Toast.makeText(activity, "Link ban rahi hai...", Toast.LENGTH_SHORT).show()
-        Thread {
-            val fileUrl = uploadApk(activity, code)
-            val text = if (fileUrl != null) "$fileUrl\n$join" else join
-            activity.runOnUiThread {
-                activity.getSystemService(ClipboardManager::class.java)
-                    ?.setPrimaryClip(ClipData.newPlainText("Heat Guard", text))
-                shareText(activity, text)
-                done(text)
-                Toast.makeText(
-                    activity,
-                    if (fileUrl != null) "Ye link APK download karegi. Install dabana padega."
-                    else "APK link nahi bani. Sirf judne wali link gayi.",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }.start()
+        val text = activity.getString(R.string.send_link_body, code)
+        activity.getSystemService(ClipboardManager::class.java)
+            ?.setPrimaryClip(ClipData.newPlainText("Heat Guard", text))
+        shareText(activity, text)
+        done(text)
     }
-
-    /** APK ntfy par rakho. Wapas https link aati hai jis se file download hoti hai. */
-    private fun uploadApk(activity: Activity, code: String): String? = runCatching {
-        val apk = File(activity.applicationInfo.sourceDir)
-        if (!apk.exists() || apk.length() > 14L * 1024 * 1024) return null
-        val topic = LinkCrypto.topic(code, "apk")
-        val connection = (URL("https://ntfy.sh/$topic").openConnection() as HttpURLConnection).apply {
-            requestMethod = "PUT"
-            doOutput = true
-            connectTimeout = 20000
-            readTimeout = 120000
-            setRequestProperty("Filename", "hg$code.apk")
-            setRequestProperty("Content-Type", "application/vnd.android.package-archive")
-            setRequestProperty("Message", "https://heatguard.app/p/$code")
-        }
-        apk.inputStream().use { input -> connection.outputStream.use { input.copyTo(it) } }
-        val body = if (connection.responseCode in 200..299) {
-            connection.inputStream.bufferedReader().use { it.readText() }
-        } else {
-            ""
-        }
-        connection.disconnect()
-        JSONObject(body).optJSONObject("attachment")?.optString("url")?.takeIf { it.startsWith("https://") }
-    }.getOrNull()
 
     /** Link dabane se code khud lag jata hai. Likhna nahi padta. */
     fun acceptUri(activity: Activity, uri: android.net.Uri?): Boolean {
@@ -82,7 +70,7 @@ object SendLink {
         return true
     }
 
-    /** Doosre phone par message copy ho to code apne aap lag jata hai. */
+    /** Doosre phone par message copy ho to code apne aap lag jayega. */
     fun acceptFromClipboard(activity: Activity): Boolean {
         if (Link.role(activity) == LinkRole.CONTROLLER && Link.code(activity).isNotBlank()) return false
         val clip = activity.getSystemService(ClipboardManager::class.java)

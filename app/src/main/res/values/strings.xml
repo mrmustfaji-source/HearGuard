@@ -27,7 +27,8 @@
     <string name="tile_phone">Phone</string>
     <string name="tile_youtube">YouTube</string>
     <string name="tile_recents">Recents</string>
-    <string name="send_link_toast">WhatsApp se Samsung ko bhejo. Wahan file install karo, phir neela link dabao.</string>
+    <string name="send_apk_button">1. App download link bhejo</string>
+    <string name="send_apk_message">Heat Guard.\n\n1. Ye link kholo - APK download hogi\n2. Download hote hi Install dabao (\"Blocked\" dikhe to Settings mein jaakar is baar Allow karke wapas Install dabao)\n3. App khol lo, bas itna hi - ab agla message aane ka wait karo\n\n%1$s</string>
     <string name="home_controller_title">Is phone se Samsung control hoga</string>
     <string name="home_controller_steps">Neeche ka button Samsung par jaata hai. Pehle wahan app install ho chuki honi chahiye.</string>
     <string name="home_controlled_title">Ye phone control ho raha hai</string>
@@ -37,10 +38,8 @@
     <string name="listen_title">Ye phone control ho raha hai</string>
     <string name="listen_body">Doosra phone button bhej sakta hai. Band karne ke liye yahi dabao.</string>
     <string name="listen_stop">Control band</string>
-    <string name="send_link_button">Doosre phone par app install karo</string>
-    <string name="send_link_title">Doosre phone ko control karo</string>
-    <string name="send_link_hint">Is phone se Samsung control karne ke liye ye dabao. WhatsApp se file jayegi. Samsung par ek baar Install dabana padega - Android background mein APK nahi lagata. App khulte hi code jud jayega, Telegram ki zaroorat nahi.</string>
-    <string name="send_link_body">Heat Guard\nHG1 code: %1$s\n\n1. Is file par tap karke Install dabao\n2. App kholo\n3. Is poore message ko copy karke app mein wapas aao - code apne aap lag jayega\n\nPhir pehle wale phone se Controls dabao.</string>
+    <string name="send_link_button">2. Pairing link bhejo</string>
+    <string name="send_link_body">Heat Guard\nHG1 code: %1$s\n\n1. Is poore message ko copy karo (App pehle se install hona chahiye - agar nahi hai to pehla message dekho)\n2. HeatGuard app kholo\n3. Code apne aap lag jayega\n\nPhir is (pehle wale) phone se Controls dabao.</string>
     <string name="send_link_joined">Jud gaya. Ab doosra phone is phone ko control kar sakta hai.</string>
     <string name="action_start">Pehra chalu karo</string>
     <string name="action_stop">Pehra band karo</string>
@@ -96,6 +95,8 @@
     <string name="deep_keep_note">Bulk button in apps ko chhod deta hai: call, SMS, WhatsApp, Telegram, alarm, calendar, bank/UPI/Google Pay, aur 2FA authenticator. Wo so gayin to OTP aur alarm ruk jayenge. Inhe sulana ho to neeche list se ek-ek kar ke kijiye.</string>
     <string name="deep_shizuku_ask">Shizuku chal raha hai par usne abhi ijazat nahi di.</string>
     <string name="deep_shizuku_grant">Shizuku se ijazat maango</string>
+    <string name="deep_shizuku_open">Shizuku app kholo</string>
+    <string name="deep_shizuku_missing">Shizuku app installed nahi hai.</string>
     <string name="deep_shizuku_off">Ek button se saari apps sulane ke liye Shizuku chahiye (free app). Uske bina neeche se ek-ek app haath se set kar sakte hain. Aapke phone par wireless debugging pehle se ON hai, to Shizuku bina laptop ke hi shuru ho jata hai - bas reboot ke baad har baar ek baar.</string>
     <string name="deep_working">Ho raha hai...</string>
     <string name="deep_failed">Nahi ho paya. Shizuku band to nahi ho gaya?</string>

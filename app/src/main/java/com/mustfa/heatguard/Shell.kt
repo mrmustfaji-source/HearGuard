@@ -89,6 +89,26 @@ object Shell {
         runCatching { Shizuku.requestPermission(SHIZUKU_PERMISSION_REQUEST) }
     }
 
+    /** Shizuku manager app ka asli package - "moe.shizuku.manager.permission.API_V23" isi se aati hai. */
+    private const val SHIZUKU_PACKAGE = "moe.shizuku.manager"
+
+    /**
+     * Shizuku app khud khol do.
+     *
+     * HeatGuard Shizuku ko khud chalu NAHI kar sakti - iske liye wahi Binder
+     * chahiye jo abhi maujood hi nahi hai (murgi-anda wali baat). Jo ho sakta
+     * hai wo bas itna hai: user ko seedha Shizuku ki screen tak pahuncha
+     * dena, taaki use dhoondhna na pade.
+     *
+     * @return false matlab Shizuku app hi installed nahi hai.
+     */
+    fun openShizukuApp(context: Context): Boolean = runCatching {
+        val launch = context.packageManager.getLaunchIntentForPackage(SHIZUKU_PACKAGE) ?: return false
+        launch.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(launch)
+        true
+    }.getOrDefault(false)
+
     /* --------------------------------------------- Command chalana --------------------------------------------- */
 
     /**

@@ -139,6 +139,93 @@ band" button sirf tez sunna band karta hai, Telegram remote ko nahi.
 dikhta hai, "Role badlo" ka button hai, aur 1-2-3-4 karke kadam likhe hain.
 Pairing code 32 se **12 akshar** kar diya gaya.
 
+### 2.6 App doosre phone tak - GitHub Releases se (26 Sep)
+
+User ne saaf teen cheezein maangi: (1) APK GitHub repo se download ho, (2)
+pairing link aur download link **alag-alag** ho, (3) build script khud APK ko
+GitHub par chadha de.
+
+**Repo:** `https://github.com/mrmustfaji-source/HearGuard` - **PUBLIC**. Isi
+liye public rakha kyunki koi secret kabhi source mein nahi hai - bot token
+hamesha sirf phone ki SharedPreferences mein rehta hai
+(`Remote.kt`/`Store.kt`), commit se pehle poore project mein grep kar ke
+verify kiya gaya. `.gitignore` mein keystore/`local.properties` bhi excluded
+hain, isliye "public" hone se koi secret leak nahi hota.
+
+**Do alag button, do alag kaam** (`SendLink.kt` mein `shareApk()` aur
+`sharePairing()` - pehle ek hi `share()` tha jo dono ek message mein bhejta
+tha, user ne mana kiya):
+
+| | Button 1 - `send_apk_button` | Button 2 - `send_link_button` |
+|---|---|---|
+| Bhejta kya hai | Sirf GitHub download link | Sirf pairing code/link |
+| Kitni baar chahiye | Ek hi baar (jab tak app update na ho) | Har naye phone ke liye |
+| Link kahan se aati hai | **Constant** - `SendLink.APK_URL` | `Link.newCode()` |
+
+Download link kabhi nahi badalti:
+```
+https://github.com/mrmustfaji-source/HearGuard/releases/latest/download/heatguard.apk
+```
+`releases/latest/download/<naam>` GitHub ka apna feature hai - jo bhi release
+"latest" ho uska wahi-naam-wala asset de deta hai. Isliye ek hi release
+(tag `apk`) hamesha rakha jata hai, har build par uska purana asset hata kar
+naya laga diya jata hai - tag/URL kabhi badalta nahi.
+
+**`D:\BuildScripts\publish-github-release.ps1` - NEW.** HeatGuard install
+hone ke baad `BUILD_AND_INSTALL.bat` (project 12 ke roop mein add kiya gaya)
+ye script khud chala deta hai. Token kahin file mein nahi hai - jo credential
+Windows ka Git Credential Manager `git push` ke liye pehle se store kar chuka
+hai, wahi `git credential fill` se maanga jata hai. Ismein ek jaal mila aur
+tay kiya gaya:
+
+> PowerShell ka `|` pipe multi-line string ko native exe (git.exe) ke stdin
+> tak sahi CRLF ke saath nahi pahunchata - "missing protocol field" bolta
+> hai. `cmd /c "... < file"` (temp file + cmd ka `<` redirection) se hi kaam
+> banta hai. Ye script isi wajah se pehle temp file banata hai.
+
+Poora chakra **live test kiya gaya**, guess nahi: token nikala, naya release
+banaya, asli APK chadhai, `Invoke-WebRequest` se download link se file wapas
+kheenchi (200 OK, sahi Content-Type), phir DOOSRI APK se dobara chalaya aur
+GitHub API se confirm kiya ki purana asset hata kar naya laga diya gaya
+(size badal gaya). Ek cheez dhyan rahe: `releases/latest/download/...` GitHub
+ke CDN se hoker jaata hai jo kabhi-kabhi 1-2 minute purana jawab de sakta hai
+- API (`/releases/tags/apk`) hamesha turant sahi size dikhata hai.
+
+**Jo GitHub par nahi hota:** koi silent/background install nahi hai, aur na
+ho sakta hai. Android kisi normal app ko APK khud install karne nahi deta
+(`INSTALL_PACKAGES` sirf firmware-signed apps ko milti hai) - doosre phone
+par kam se kam ek baar "Install" tap karna hi padega, aur pehli baar "Unknown
+sources" allow karna padega. Ye Android ka security model hai, HeatGuard ki
+kami nahi. Jo ho sakta hai wo ye hai ki us tap ke alawa kuch aur na karna
+pade - code type karna, USB lagana, kuch nahi.
+
+**Sirf Telegram ke liye hai, koi bhi messenger nahi.** User ne poocha tha.
+Control (`Remote.kt`) seedha Telegram ke Bot API (`api.telegram.org`) se
+juda hai - WhatsApp/Signal jaisi kisi aur app ka aisa free bot API hai hi
+nahi. Lekin `SendLink.shareApk()`/`sharePairing()` Android ke normal Share
+sheet se jaata hai, isliye WHATSAPP SE BHI BHEJ SAKTE HO - sirf CONTROL
+Telegram tak seemit hai, LINK BHEJNA nahi. `Link.kt` wala doosra raasta
+(app dono phone par) mein toh koi messenger hai hi nahi - seedha ntfy.sh se.
+
+### 2.7 Shizuku "band hai" ab ek button hai, khali chetavni nahi
+
+User ne shikayat ki: deep sleep button dabate hi "pehle Shizuku chalao" aa
+jaata hai, aur Shizuku khud "auto run" kyon nahi hoti.
+
+**Jo tay hua, naap kar:** Shizuku khud ko boot ke baad start NAHI kar sakti
+bina root ke - ye Android ka jaan-boojh kar rakha hua security gate hai
+(wahi ADB bridge jo Shizuku istemal karta hai, wo har reboot ke baad
+manually "Start" maangta hai). HeatGuard isse bypass nahi kar sakti -
+karne ki koshish bhi murgi-anda wali baat hai: Shizuku start karne ke liye
+wahi Binder chahiye jo abhi maujood hi nahi hai.
+
+Jo ho sakta tha wo kiya: `Shell.openShizukuApp()` (naya) seedha Shizuku app
+kholta hai (`getLaunchIntentForPackage("moe.shizuku.manager")`), taaki user
+ko dhoondhna na pade. Button `DeepSleepActivity` aur `SettingsActivity` dono
+mein hai, jab Shizuku bilkul chal hi nahi rahi (pehle sirf "ijazat maango"
+button tha, jo tabhi dikhta tha jab Shizuku pehle se chal rahi ho - jo
+asal shikayat thi wahi case cover nahi karta tha).
+
 ---
 
 ## 3. NAAP KAR pata chali baatein — inhe dobara mat dhoondhna

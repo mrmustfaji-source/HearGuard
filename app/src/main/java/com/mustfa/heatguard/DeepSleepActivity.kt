@@ -101,6 +101,13 @@ class DeepSleepActivity : HgActivity() {
                 root.addView(button(getString(R.string.deep_shizuku_grant)) {
                     Shell.requestShizukuPermission()
                 })
+            } else {
+                // Shizuku chal hi nahi rahi - ijazat maangne ka sawaal hi
+                // nahi. Yahan sirf itna kar sakte hain: seedha Shizuku ki
+                // screen tak pahuncha do, dhoondhna na pade.
+                root.addView(button(getString(R.string.deep_shizuku_open)) {
+                    if (!Shell.openShizukuApp(this)) toast(getString(R.string.deep_shizuku_missing))
+                })
             }
         }
 

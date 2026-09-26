@@ -20,7 +20,8 @@ class MainActivity : HgActivity() {
         steps = findViewById(R.id.steps)
         reply = findViewById(R.id.reply)
 
-        findViewById<Button>(R.id.send_link).setOnClickListener { SendLink.share(this) }
+        findViewById<Button>(R.id.send_apk).setOnClickListener { SendLink.shareApk(this) }
+        findViewById<Button>(R.id.send_link).setOnClickListener { SendLink.sharePairing(this) }
         findViewById<Button>(R.id.btn_deep).setOnClickListener {
             startActivity(Intent(this, DeepSleepActivity::class.java))
         }
