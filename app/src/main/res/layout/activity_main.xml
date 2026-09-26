@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <Button
+            android:id="@+id/send_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send_link_button" />
+
+        <Button
+            android:id="@+id/btn_deep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deep_title" />
+
+        <Button
+            android:id="@+id/btn_guard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guard_button" />
+
+        <Button
+            android:id="@+id/btn_telegram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/telegram_button" />
+
+        <TextView
+            android:id="@+id/steps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:paddingBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tile_screen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_whatsapp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_whatsapp" />
+            <Button
+                android:id="@+id/btn_camera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_camera" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_gallery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_gallery" />
+            <Button
+                android:id="@+id/btn_chrome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_chrome" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_phone" />
+            <Button
+                android:id="@+id/btn_youtube"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_youtube" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/key_back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_back" />
+            <Button
+                android:id="@+id/key_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_home" />
+            <Button
+                android:id="@+id/btn_recents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tile_recents" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/vol_down"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_vol_down" />
+            <Button
+                android:id="@+id/vol_up"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/home_vol_up" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:paddingTop="8dp" />
+    </LinearLayout>
+</ScrollView>

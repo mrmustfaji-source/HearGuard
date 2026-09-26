@@ -1,0 +1,25 @@
+# Build output - dobara ban jata hai, repo mein rakhne ka fayda nahi
+*.iml
+.gradle/
+build/
+# Yahan koi purani script APK copy kar deti hai - binary hai, git mein nahi
+/app/debug/
+/app/release/
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+.kotlin/
+
+# Android Studio ki apni files
+.idea/
+*.hprof
+
+# Signing - PUBLIC repo hai, in mein se koi bhi cheez yahan kabhi na jaye
+*.jks
+*.keystore
+keystore.properties
+
+# OS ka kabaad
+.DS_Store
+Thumbs.db

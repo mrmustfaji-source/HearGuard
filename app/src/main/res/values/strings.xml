@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Sab kuch plain ASCII mein. Em-dash jaise characters yahan se guzarte waqt
+  do baar toot chuke hain (ek baar PowerShell mein, ek baar perl mein), aur
+  toota hua character build ko rok deta hai. Hyphen se kaam chal jata hai.
+-->
+<resources>
+    <string name="app_name">Heat Guard</string>
+    <string name="subtitle">Battery ki garmi aur drain par nazar. Gadbad ho to 15-30 minute mein bata dega.</string>
+
+    <string name="status_on">Pehra chalu hai</string>
+    <string name="status_off">Pehra band hai</string>
+
+    <string name="home_status">Doosre phone ka status</string>
+    <string name="home_home">Home</string>
+    <string name="home_back">Back</string>
+    <string name="home_vol_up">Volume badhao</string>
+    <string name="home_vol_down">Volume ghatao</string>
+    <string name="home_more">Aur buttons</string>
+    <string name="home_off_title">Doosra phone yahin se chalta hai</string>
+    <string name="home_off_steps">1. Neeche "Samsung ko app bhejo" dabao. WhatsApp khulega.\n2. Samsung par pehli link se APK install karo.\n3. Install ke baad doosri link dabao. Phir is phone ke button Samsung par chalenge.\n\nDeep sleep is phone ke liye hai. Neeche wala button.</string>
+    <string name="tile_screen">Screen</string>
+    <string name="tile_whatsapp">WhatsApp</string>
+    <string name="tile_camera">Camera</string>
+    <string name="tile_gallery">Gallery</string>
+    <string name="tile_chrome">Chrome</string>
+    <string name="tile_phone">Phone</string>
+    <string name="tile_youtube">YouTube</string>
+    <string name="tile_recents">Recents</string>
+    <string name="send_link_toast">WhatsApp se Samsung ko bhejo. Wahan file install karo, phir neela link dabao.</string>
+    <string name="home_controller_title">Is phone se Samsung control hoga</string>
+    <string name="home_controller_steps">Neeche ka button Samsung par jaata hai. Pehle wahan app install ho chuki honi chahiye.</string>
+    <string name="home_controlled_title">Ye phone control ho raha hai</string>
+    <string name="home_controlled_steps">Doosra phone isko chala sakta hai. Band karne ke liye notification ka button dabao.</string>
+    <string name="home_sending">Bhej diya. Samsung ka jawab aa raha hai...</string>
+    <string name="home_no_reply">Jawab nahi aaya. Samsung par app khuli hai? Notification "control ho raha hai" dikh rahi hai?</string>
+    <string name="listen_title">Ye phone control ho raha hai</string>
+    <string name="listen_body">Doosra phone button bhej sakta hai. Band karne ke liye yahi dabao.</string>
+    <string name="listen_stop">Control band</string>
+    <string name="send_link_button">Doosre phone par app install karo</string>
+    <string name="send_link_title">Doosre phone ko control karo</string>
+    <string name="send_link_hint">Is phone se Samsung control karne ke liye ye dabao. WhatsApp se file jayegi. Samsung par ek baar Install dabana padega - Android background mein APK nahi lagata. App khulte hi code jud jayega, Telegram ki zaroorat nahi.</string>
+    <string name="send_link_body">Heat Guard\nHG1 code: %1$s\n\n1. Is file par tap karke Install dabao\n2. App kholo\n3. Is poore message ko copy karke app mein wapas aao - code apne aap lag jayega\n\nPhir pehle wale phone se Controls dabao.</string>
+    <string name="send_link_joined">Jud gaya. Ab doosra phone is phone ko control kar sakta hai.</string>
+    <string name="action_start">Pehra chalu karo</string>
+    <string name="action_stop">Pehra band karo</string>
+    <string name="action_open_battery">Battery usage kholo</string>
+    <string name="action_usage_access">Usage access do (app ka naam batane ke liye)</string>
+    <string name="action_deep_sleep">Deep sleep / background limits kholo</string>
+    <string name="action_clear">History saaf karo</string>
+    <string name="action_snooze">1 ghante chup</string>
+    <string name="action_stop_now">Abhi band karo</string>
+    <string name="action_force_stop">Band karo</string>
+
+    <string name="msg_no_screen">Is phone par ye screen nahi mili.</string>
+
+    <string name="label_temp">Battery temperature: %1$.1f C</string>
+    <string name="label_level">Battery: %1$d%%</string>
+    <string name="label_charging">  (charge ho rahi hai)</string>
+    <string name="label_drain">Drain: %1$.1f%% prati ghanta</string>
+    <string name="label_drain_unknown">Drain: abhi naapa nahi (pehle check ka intezaar)</string>
+    <string name="label_headroom">Thermal headroom: %1$.0f%% (100 par throttling shuru)</string>
+
+    <string name="mode_full">Poora mode: app ka naam bhi bata sakta hoon</string>
+    <string name="mode_basic">Simple mode: sirf garmi aur drain</string>
+    <string name="mode_basic_how">Naam bhi chahiye to ek baar laptop se ye chalaiye:\n\nadb shell pm grant com.mustfa.heatguard android.permission.DUMP\n\nEk hi baar. Reboot ke baad bhi rehti hai.</string>
+    <string name="mode_warming">Poora mode chalu hai. Pehla naap chal raha hai - agle check (15 minute) ke baad app ka naam dikhne lagega.</string>
+    <string name="mode_blocked">DUMP mil chuki hai par CPU list nahi mil rahi. Do wajah ho sakti hain: (1) Usage access nahi di - neeche wala button dabaiye, ya (2) Android ne service tak pahunch rok di. Tab tak app garmi aur drain wale mode par chalti rahegi, jo apna kaam theek karta hai.</string>
+    <string name="top_cpu_title">Abhi sabse zyada CPU</string>
+
+    <string name="deep_sleep_note">Samsung wala \'ek button se saari apps deep sleep\' ek app nahi kar sakti: Android CHANGE_APP_IDLE_STATE kisi bhi app ko deta hi nahi, adb se bhi nahi. Upar wala button phone ki apni battery screen kholta hai, jahan ye haath se ho jata hai. Sab ek saath karne ke liye laptop se: phone-care.ps1 -DeepSleepUnused</string>
+
+    <string name="guard_button">Garmi aur CPU ka pehra</string>
+    <string name="telegram_button">Telegram se control - link bhejo</string>
+    <string name="deep_title">Deep sleep / background limits</string>
+    <string name="group_deep">Deep sleeping (background band)</string>
+    <string name="group_sleeping">Sleeping (kabhi kabhi chalti hain)</string>
+    <string name="group_active">Active (roz chalti hain)</string>
+    <string name="deep_intro">Ye wahi teen listein hain jo Samsung dikhata hai. Kisi bhi app par tap kijiye - uska apna page khulega, jahan Battery mein jaa kar use Restricted kar sakte hain. Tap ke baad wapas aaiye, list apne aap update ho jayegi.</string>
+    <string name="group_deep_help">Background bilkul band. Notification bhi nahi aayegi. App kholte hi normal ho jaati hai.</string>
+    <string name="group_sleeping_help">Background mein kabhi kabhi chalegi. Notification der se aa sakti hai.</string>
+    <string name="group_active_help">Kabhi nahi sulayi jayengi. Jo apps aapko hamesha chahiye wo yahan rakhiye.</string>
+    <string name="deep_groups_intro">Kisi bhi line par tap kijiye. Saari apps ki list khulegi jisme tick box honge - tick lagaiye ya hataiye, phir DONE dabaiye.</string>
+    <string name="deep_select_all">SAB</string>
+    <string name="deep_done">DONE</string>
+    <string name="deep_nothing_changed">Kuch badla nahi.</string>
+    <string name="deep_done_count">Ho gaya. %1$d apps daali, %2$d hatai.</string>
+    <string name="deep_skipped">%1$d apps chhod di (call/SMS/bank/2FA wagairah) - wo so gayin to OTP aur alarm ruk jate.</string>
+    <string name="deep_need_shizuku">Bucket badalne ke liye Shizuku chahiye. Android ye adhikaar (CHANGE_APP_IDLE_STATE) kisi bhi app ko deta hi nahi - Samsung kar leta hai kyunki uski Settings app firmware ke saath sign hoti hai. Shizuku free hai aur aapke phone par wireless debugging pehle se ON hai, to wo bina laptop ke shuru ho jata hai.</string>
+    <string name="deep_need_shizuku_short">Pehle Shizuku chalu kijiye.</string>
+    <string name="deep_empty_group">Is list mein koi app nahi.</string>
+    <string name="deep_cannot_read">Buckets padhe nahi ja sake. Iske liye Usage access chahiye (aur DUMP permission, jo laptop se ek baar milti hai).</string>
+    <string name="deep_shizuku_on">Shizuku chal raha hai - ab ek button se sab ho sakta hai, bilkul Samsung ki tarah.</string>
+    <string name="deep_all">%1$d apps ko deep sleep mein daalo</string>
+    <string name="deep_wake_all">%1$d apps ko wapas jagao</string>
+    <string name="deep_keep_note">Bulk button in apps ko chhod deta hai: call, SMS, WhatsApp, Telegram, alarm, calendar, bank/UPI/Google Pay, aur 2FA authenticator. Wo so gayin to OTP aur alarm ruk jayenge. Inhe sulana ho to neeche list se ek-ek kar ke kijiye.</string>
+    <string name="deep_shizuku_ask">Shizuku chal raha hai par usne abhi ijazat nahi di.</string>
+    <string name="deep_shizuku_grant">Shizuku se ijazat maango</string>
+    <string name="deep_shizuku_off">Ek button se saari apps sulane ke liye Shizuku chahiye (free app). Uske bina neeche se ek-ek app haath se set kar sakte hain. Aapke phone par wireless debugging pehle se ON hai, to Shizuku bina laptop ke hi shuru ho jata hai - bas reboot ke baad har baar ek baar.</string>
+    <string name="deep_working">Ho raha hai...</string>
+    <string name="deep_failed">Nahi ho paya. Shizuku band to nahi ho gaya?</string>
+    <string name="deep_bulk_note">Ek hi button se SAARI apps deep sleep karna ek app ke bas ka nahi: Android ne wo adhikaar (CHANGE_APP_IDLE_STATE) sirf firmware ke saath sign hui apps ke liye rakha hai - isiliye Samsung kar leta hai. Sab ek saath karne ke liye laptop se: phone-care.ps1 -DeepSleepUnused</string>
+
+    <string name="remote_title">Samsung se control karo</string>
+    <string name="action_remote">Samsung se control karo (Telegram)</string>
+    <string name="remote_how">Setup - 2 minute, ek hi baar:\n\n1. Telegram mein \@BotFather ko message kijiye\n2. /newbot bhejiye, koi bhi naam de dijiye\n3. Wo ek TOKEN dega - neeche paste kijiye aur Save dabaiye\n4. Uper wala \"Control link bhejo\" dabaiye - Telegram khulega, link doosre phone ko bhej dijiye\n\nDoosre phone par: link par tap, phir START. Bas - us chat mein buttons aa jayenge aur ye phone wahin se chalega. Wahan HeatGuard lagane ki zaroorat NAHI, sirf Telegram chahiye.</string>
+    <string name="remote_link_send">Control link Telegram par bhejo</string>
+    <string name="remote_link_none">Abhi koi link nahi bani. Uper wala button dabaiye.</string>
+    <string name="remote_link_making">Link ban rahi hai...</string>
+    <string name="remote_link_fail">Link nahi ban payi. Token sahi hai? Internet chal raha hai?</string>
+    <string name="remote_link_message">Heat Guard remote.\n\nIs link par tap kijiye aur START dabaiye - phir isi chat se phone chalega.\n\n%1$s\n\nYe link 30 minute chalti hai aur ek hi baar kaam aati hai.</string>
+    <string name="remote_token_hint">Bot token yahan paste kijiye</string>
+    <string name="remote_save">Token save karo</string>
+    <string name="remote_test">Test karo</string>
+    <string name="remote_testing">Check kar raha hoon...</string>
+    <string name="remote_test_message">Test theek hai - Heat Guard jud gaya.</string>
+    <string name="remote_test_ok">Ho gaya! Telegram dekhiye.</string>
+    <string name="remote_test_no_chat">Abhi tak koi message nahi mila. Pehle apne bot ko Telegram se koi message bhejiye, phir dobara Test dabaiye.</string>
+    <string name="remote_test_fail">Message nahi ja paya. Token sahi hai? Internet chal raha hai?</string>
+    <string name="remote_need_token">Pehle token daaliye.</string>
+    <string name="remote_saved">Token save ho gaya. Ab uper se control link bhejiye.</string>
+    <string name="remote_forget">Jude hue chat ko bhool jao</string>
+    <string name="remote_forgot">Bhool gaya. Agla message bhejne wala naya malik banega.</string>
+    <string name="remote_off">Remote band karo</string>
+    <string name="remote_turned_off">Remote band kar diya.</string>
+    <string name="remote_state_on">Remote chalu: %1$s</string>
+    <string name="remote_state_waiting">Abhi kisi chat se juda nahi. Uper se control link bhejiye.</string>
+    <string name="remote_state_paired">Juda hua chat: %1$s (sirf yahi chalegi)</string>
+    <string name="remote_security">Suraksha: bot sirf EK chat ki sunta hai - jo control link se aata hai wahi. Link mein ek-baar ka code hota hai, jo istemal hote hi mit jata hai aur 30 minute mein khud mar jata hai. Baaki sab chup-chaap phenk diye jate hain. TOKEN KISI KO MAT DIJIYE: jiske paas token hoga wo is phone ko command bhej sakta hai. Galti se kahin chala jaye to BotFather par /revoke kar ke naya bana lijiye. Aur dhyan rahe - status aur command ka output Telegram ke server se guzarta hai.</string>
+    <string name="remote_delay">Der kitni: chetavni TURANT jaati hai (phone khud bhejta hai). Aapke bheje command mein der lag sakti hai - phone jab jeb mein pada ho to Android use bar-bar jagne nahi deta, isliye 10-15 minute lag sakte hain. Phone chalu ho to jawab jaldi aata hai.</string>
+
+    <string name="link_title">Doosre phone se control</string>
+    <string name="link_role_none">Ye phone abhi kisi role mein nahi hai</string>
+    <string name="link_role_controlled">YE PHONE: isse control KIYA JAYEGA</string>
+    <string name="link_role_controller">YE PHONE: isse control KARENGE</string>
+    <string name="link_change_role">Role badlo</string>
+    <string name="link_share">Code bhejo (WhatsApp wagairah se)</string>
+    <string name="link_load_apps">Doosre phone ki apps ki list lao</string>
+    <string name="link_apps_title">Doosre phone ki apps</string>
+    <string name="link_apps_loaded">%1$d apps mil gayin - neeche list mein hain.</string>
+    <string name="action_link">Doosre phone se control karo</string>
+    <string name="link_intro">Yahi app dono phone mein daaliye. Ek phone batata hai ki use control kiya jayega, doosra use control karta hai.\n\nPassword kabhi type nahi karna padega. Ek baar ek pairing code doosre phone par daalna hai - bas, Bluetooth pair karne ki tarah.</string>
+    <string name="link_be_controlled">Is phone ko control KIYA JAYEGA (Redmi)</string>
+    <string name="link_be_controller">Is phone se control KARUNGA (Samsung)</string>
+    <string name="link_privacy">Dono phone ntfy.sh relay se judte hain. Command aur screen encrypt hokar jaate hain: relay ko pairing code nahi dikhta, seedhi tasveer nahi milti. Code kisi aur ko mat dijiye.</string>
+    <string name="link_controlled_title">Ye phone control kiya jayega</string>
+    <string name="link_controlled_how">Neeche wala code doosre phone mein daalna hai.
+
+1. Doosre phone par ye app kholiye
+2. Doosre phone se control karo
+3. "Is phone se control KARENGE" chuniye
+4. Wahan ye code daal dijiye</string>
+    <string name="link_copy">Code copy karo</string>
+    <string name="link_copied">Copy ho gaya.</string>
+    <string name="link_new_code">Naya code banao</string>
+    <string name="link_new_code_done">Naya code ban gaya. Doosre phone par dobara daalna padega.</string>
+    <string name="link_stop">Band karo</string>
+    <string name="link_controlled_note">Ye code hi taala hai. Jiske paas ye hoga wo is phone ko command bhej sakta hai - isliye kisi aur ko mat dijiye. Shak ho to upar se naya code bana lijiye, purana usi waqt bekaar ho jata hai.</string>
+    <string name="link_controller_title">Is phone se control karenge</string>
+    <string name="link_enter_code">Code doosre phone par dikh raha hai.
+
+1. Doosre phone par ye app kholiye
+2. Doosre phone se control karo
+3. "Is phone ko control KIYA JAYEGA" chuniye
+4. Wahan jo code dikhe wo yahan daaliye</string>
+    <string name="link_code_hint">Pairing code</string>
+    <string name="link_save_code">Save karo</string>
+    <string name="link_code_short">Code bahut chhota lag raha hai. Poora daaliye.</string>
+    <string name="link_controller_ready">Jud gaya. Button dabaiye - jawab neeche aayega.</string>
+    <string name="link_cmd_status">Status dekho</string>
+    <string name="link_cmd_top">Kaun CPU kha raha hai</string>
+    <string name="link_cmd_sleep">Unused apps ko deep sleep karo</string>
+    <string name="link_cmd_help">Saare commands</string>
+    <string name="link_cmd_apps">Saari apps ke naam</string>
+    <string name="link_app_title">App kholo ya band karo</string>
+    <string name="link_app_hint">App ka naam, jaise: whatsapp</string>
+    <string name="link_app_open">Kholo</string>
+    <string name="link_app_stop">Band karo</string>
+    <string name="link_type_app">Pehle app ka naam likhiye.</string>
+    <string name="link_free_title">Ya koi bhi command</string>
+    <string name="link_free_hint">jaise: /sh getprop ro.build.version.release</string>
+    <string name="link_send">Bhejo</string>
+    <string name="link_type_something">Pehle kuch likhiye.</string>
+    <string name="link_sending">Bhej raha hoon...</string>
+    <string name="link_send_failed">Nahi ja paya. Internet chal raha hai?</string>
+    <string name="link_waiting">Bhej diya. Jawab ka intezaar...</string>
+    <string name="link_no_reply">Jawab nahi aaya. Doosra phone shayad soya hua hai - wo jagne par command chala dega. Thodi der baad Status dabaiye.</string>
+    <string name="link_no_output">(abhi kuch nahi)</string>
+    <string name="link_forget_code">Code bhool jao</string>
+    <string name="link_delay_note">Der kyun lagti hai: doosra phone jab jeb mein pada ho to Android use bar-bar jagne nahi deta. Wo har 15 minute mein jagta hai aur tabhi command dekhta hai. Phone chalu ho to jawab jaldi aata hai. Screen session alag hai - wo chalu hone par har 10 second mein tasveer aati hai.</string>
+
+    <string name="screen_title">Doosre phone ki screen</string>
+    <string name="screen_start">Screen dikhana shuru karo</string>
+    <string name="screen_open">Screen dekho aur chalao</string>
+    <string name="screen_running">Screen session chalu hai</string>
+    <string name="screen_stop">Session band karo</string>
+    <string name="screen_need_shizuku">Screen ke liye Shizuku chahiye. Bina uske screencap aur tap nahi chalenge.</string>
+    <string name="screen_controlled_note">Ye session 10 minute chalti hai, phir khud band. Upar notification rahegi - battery lagegi, isliye kaam khatam hote hi band kar dijiye. Tasveer har 10 second mein badlegi. ntfy.sh 5 second mein ek se zyada request nahi lene deta, isliye ye video nahi hai. Tap usi der mein pahunchta hai.</string>
+    <string name="screen_channel">Screen session</string>
+    <string name="screen_notify_title">Screen dikha rahe hain</string>
+    <string name="screen_notify_body">10 minute baad khud band. Band karne ke liye yahi button.</string>
+    <string name="screen_waiting">Doosre phone par Screen dikhana shuru karo dabaiye. Tasveer aane mein 10-20 second lagenge.</string>
+    <string name="screen_frames">Tasveer %1$d. Agli ~10 second mein.</string>
+    <string name="screen_sent">Bhej diya. Doosre phone tak ~5 second.</string>
+    <string name="screen_stopping">Band karne ka sandesh ja raha hai...</string>
+    <string name="screen_back">Back</string>
+    <string name="screen_home">Home</string>
+    <string name="screen_recents">Recents</string>
+
+    <string name="history_title">Ab tak kya pakda</string>
+    <string name="history_empty">Abhi tak kuch nahi. Yahi achhi khabar hai.</string>
+
+    <string name="alert_title">Phone garam ho raha hai</string>
+    <string name="alert_title_named">%1$s phone garam kar rahi hai</string>
+    <string name="hint_foreground">Pichhle ghante mein sabse zyada screen par: %1$s</string>
+    <string name="hint_what_to_do">Kya karein: neeche Battery usage kholiye. Jo app sabse upar hai aur aapne use ki hi nahi - wahi culprit hai. Uspar tap kar ke Force stop dabaiye.</string>
+    <string name="hint_what_to_do_named">Neeche Band karo dabaiye - seedha us app ke page par pahunch jayenge, jahan Force stop ka button hai.</string>
+
+    <string name="channel_alert">Garmi ki chetavni</string>
+    <string name="channel_alert_desc">Jab phone asamanya roop se garam ho ya battery tezi se gire</string>
+
+    <string name="footer_limits">Bina Shizuku ke ye app kisi doosri app ko na maar sakti hai, na deep sleep mein daal sakti hai: wo adhikaar (FORCE_STOP_PACKAGES, CHANGE_APP_IDLE_STATE) Android kisi bhi normal app ko deta hi nahi - maine aapke phone par khud test kiya. Tab bhi ye gadbad SHURU hote hi khabar de deti hai aur seedha sahi screen tak le jaati hai; pichhli baar pata chalne mein 3 din lage the. Shizuku chalu ho to dono kaam ek tap mein ho jate hain.</string>
+</resources>
