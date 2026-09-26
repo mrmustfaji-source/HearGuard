@@ -71,6 +71,23 @@
         <intent>
             <action android:name="android.intent.action.MAIN" />
         </intent>
+
+        <!--
+          Android 11+ apps ko ek doosre se "andha" rakhta hai jab tak yahan
+          saaf na likha jaye. Iske bina `setPackage("org.telegram...")` wali
+          intent (RemoteActivity.shareToTelegram) aur `tg://` wali deep link
+          (BotFather seedha kholna) chalte hi nahi - koi error bhi nahi aata,
+          bas chup-chaap "Telegram nahi mila" wale fallback par chala jaata.
+        -->
+        <package android:name="org.telegram.messenger" />
+        <package android:name="org.telegram.messenger.web" />
+        <package android:name="org.telegram.plus" />
+        <package android:name="nekox.messenger" />
+        <package android:name="org.thunderdog.challegram" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="tg" />
+        </intent>
     </queries>
 
     <application

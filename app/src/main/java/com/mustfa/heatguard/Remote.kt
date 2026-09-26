@@ -110,6 +110,18 @@ object Remote {
         prefs(c).edit().remove(K_CHAT).apply()
     }
 
+    /**
+     * Clipboard mein token jaisi dikhne wali cheez dhoondo.
+     *
+     * BotFather ka token hamesha isi shakal mein aata hai: kuch ank, ek
+     * colon, phir letters/numbers/`-`/`_`. Poora BotFather ka message copy
+     * ho (jisme aage-peeche aur bhi text ho) tab bhi ye usi ke beech se
+     * token nikaal leta hai.
+     */
+    private val TOKEN_SHAPE = Regex("""\b(\d{6,10}:[A-Za-z0-9_-]{30,45})\b""")
+
+    fun looksLikeToken(text: String): String? = TOKEN_SHAPE.find(text)?.groupValues?.get(1)
+
     /** Remote tabhi asli mein "chalu" hai jab koi chat bhi judi ho. */
     fun isPaired(c: Context): Boolean = isEnabled(c) && ownerChat(c) != 0L
 

@@ -18,7 +18,7 @@
     <string name="home_vol_down">Volume ghatao</string>
     <string name="home_more">Aur buttons</string>
     <string name="home_off_title">Doosra phone yahin se chalta hai</string>
-    <string name="home_off_steps">1. Neeche "Samsung ko app bhejo" dabao. WhatsApp khulega.\n2. Samsung par pehli link se APK install karo.\n3. Install ke baad doosri link dabao. Phir is phone ke button Samsung par chalenge.\n\nDeep sleep is phone ke liye hai. Neeche wala button.</string>
+    <string name="home_off_steps">1. Neeche pehla button (\"1. App download link bhejo\") dabao - Samsung ko APK link jayegi.\n2. Samsung par install karo, phir app kholo.\n3. Yahan wapas aakar doosra button (\"2. Pairing link bhejo\") dabao.\n\nSamsung us link par tap karte hi jud jayega - phir is phone se Controls AUR Screen (Samsung ki screen dekhna/chalana) dono kaam karenge.\n\nDeep sleep is phone ke liye hai. Neeche wala button.</string>
     <string name="tile_screen">Screen</string>
     <string name="tile_whatsapp">WhatsApp</string>
     <string name="tile_camera">Camera</string>
@@ -30,7 +30,7 @@
     <string name="send_apk_button">1. App download link bhejo</string>
     <string name="send_apk_message">Heat Guard.\n\n1. Ye link kholo - APK download hogi\n2. Download hote hi Install dabao (\"Blocked\" dikhe to Settings mein jaakar is baar Allow karke wapas Install dabao)\n3. App khol lo, bas itna hi - ab agla message aane ka wait karo\n\n%1$s</string>
     <string name="home_controller_title">Is phone se Samsung control hoga</string>
-    <string name="home_controller_steps">Neeche ka button Samsung par jaata hai. Pehle wahan app install ho chuki honi chahiye.</string>
+    <string name="home_controller_steps">Neeche ke button Samsung par jaate hain (wahan app pehle se install honi chahiye). \"Screen\" button se Samsung ki screen dekh aur chala sakte ho.</string>
     <string name="home_controlled_title">Ye phone control ho raha hai</string>
     <string name="home_controlled_steps">Doosra phone isko chala sakta hai. Band karne ke liye notification ka button dabao.</string>
     <string name="home_sending">Bhej diya. Samsung ka jawab aa raha hai...</string>
@@ -39,7 +39,7 @@
     <string name="listen_body">Doosra phone button bhej sakta hai. Band karne ke liye yahi dabao.</string>
     <string name="listen_stop">Control band</string>
     <string name="send_link_button">2. Pairing link bhejo</string>
-    <string name="send_link_body">Heat Guard\nHG1 code: %1$s\n\n1. Is poore message ko copy karo (App pehle se install hona chahiye - agar nahi hai to pehla message dekho)\n2. HeatGuard app kholo\n3. Code apne aap lag jayega\n\nPhir is (pehle wale) phone se Controls dabao.</string>
+    <string name="send_link_body">Heat Guard\nHG1 code: %1$s\n\n1. Is poore message ko copy karo (App pehle se install hona chahiye - agar nahi hai to pehla message dekho)\n2. HeatGuard app kholo\n3. Code apne aap lag jayega\n\nPhir is (pehle wale) phone se \"Controls\" ya \"Screen\" (screen dekhna/chalana) dabao.</string>
     <string name="send_link_joined">Jud gaya. Ab doosra phone is phone ko control kar sakta hai.</string>
     <string name="action_start">Pehra chalu karo</string>
     <string name="action_stop">Pehra band karo</string>
@@ -104,7 +104,13 @@
 
     <string name="remote_title">Samsung se control karo</string>
     <string name="action_remote">Samsung se control karo (Telegram)</string>
-    <string name="remote_how">Setup - 2 minute, ek hi baar:\n\n1. Telegram mein \@BotFather ko message kijiye\n2. /newbot bhejiye, koi bhi naam de dijiye\n3. Wo ek TOKEN dega - neeche paste kijiye aur Save dabaiye\n4. Uper wala \"Control link bhejo\" dabaiye - Telegram khulega, link doosre phone ko bhej dijiye\n\nDoosre phone par: link par tap, phir START. Bas - us chat mein buttons aa jayenge aur ye phone wahin se chalega. Wahan HeatGuard lagane ki zaroorat NAHI, sirf Telegram chahiye.</string>
+    <string name="remote_step_label">Kadam %1$s</string>
+    <string name="remote_step1_text">Neeche button dabao - Telegram mein seedha BotFather ki chat khul jayegi (ye Telegram ka apna bot hai, jo naye bot banata hai). Wahan type karo: /newbot\n\nFir jo naam maange wo de do (kuch bhi chalega, jaise "Mera Phone"). Fir jo @username maange, uske end mein "bot" hona chahiye (jaise saifu_heat_bot) - wahi likh do.</string>
+    <string name="remote_open_botfather">BotFather kholo</string>
+    <string name="remote_step2_text">BotFather ek lambi seedhi si line degi, kuch aisi: 123456789:AAExampleTextYahanAayegi12345\n\nUs poore message ko copy karo (message par lambi der tap karo, phir Copy). Wapas HeatGuard mein aao - neeche apne aap aa jayegi, bas Save dabana hai.</string>
+    <string name="remote_step3_text">Ab ek link banegi jo Samsung ko bhejni hai. Wahan tap karke START dabate hi wo phone is phone ka remote ban jayega.</string>
+    <string name="remote_telegram_missing">Telegram installed nahi hai is phone par.</string>
+    <string name="remote_token_found">Token clipboard se mil gaya - neeche Save dabao.</string>
     <string name="remote_link_send">Control link Telegram par bhejo</string>
     <string name="remote_link_none">Abhi koi link nahi bani. Uper wala button dabaiye.</string>
     <string name="remote_link_making">Link ban rahi hai...</string>

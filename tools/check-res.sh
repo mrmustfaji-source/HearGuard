@@ -53,8 +53,14 @@ fi
 # ---- 3. Layout ke id jo code maangta hai ----
 layoutIds=$(grep -rhoE 'android:id="@\+id/[A-Za-z0-9_]+"' "$RES"/layout/*.xml 2>/dev/null \
   | sed 's/.*@+id\///;s/"//' | sort -u)
-usedIds=$(grep -rhoE "R\.id\.[A-Za-z0-9_]+" "$HERE/../app/src/main/java" 2>/dev/null \
-  | sed 's/R\.id\.//' | sort -u)
+# `android.R.id.content` jaisi platform ID bhi isi "R.id.xxx" shakal mein
+# dikhti hai, isliye poora qualified naam pakad kar "android.R.id." wali
+# lines pehle hata di jaati hain - warna har activity ka apna
+# `android.R.id.content` ek "missing id" ban kar aata (ye kabhi layout.xml
+# mein hoga hi nahi, wo Android khud deta hai).
+usedIds=$(grep -rhoE "[A-Za-z0-9_.]*R\.id\.[A-Za-z0-9_]+" "$HERE/../app/src/main/java" 2>/dev/null \
+  | grep -v "^android\.R\.id\." \
+  | sed 's/.*R\.id\.//' | sort -u)
 missingIds=$(comm -13 <(echo "$layoutIds") <(echo "$usedIds"))
 if [ -n "$missingIds" ]; then
   echo "CODE MAANGTA HAI PAR LAYOUT MEIN NAHI:"
