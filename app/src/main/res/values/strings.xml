@@ -125,6 +125,7 @@
     <string name="remote_test_no_chat">Abhi tak koi message nahi mila. Pehle apne bot ko Telegram se koi message bhejiye, phir dobara Test dabaiye.</string>
     <string name="remote_test_fail">Message nahi ja paya. Token sahi hai? Internet chal raha hai?</string>
     <string name="remote_need_token">Pehle token daaliye.</string>
+    <string name="remote_bad_token">Ye BotFather ka token nahi lagta. Token mein ek colon (:) hota hai, jaisa: 123456789:AAHqX8yZ... Pairing code (jaisa maaci9gr3344) alag cheez hai - wo doosre feature ka hai, yahan nahi chalega.</string>
     <string name="remote_saved">Token save ho gaya. Ab uper se control link bhejiye.</string>
     <string name="remote_forget">Jude hue chat ko bhool jao</string>
     <string name="remote_forgot">Bhool gaya. Agla message bhejne wala naya malik banega.</string>

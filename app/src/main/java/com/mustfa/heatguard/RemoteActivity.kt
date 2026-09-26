@@ -72,9 +72,21 @@ class RemoteActivity : HgActivity() {
         container.addView(tokenField)
 
         container.addView(button(getString(R.string.remote_save)) {
-            val value = Remote.looksLikeToken(tokenField.text.toString()) ?: tokenField.text.toString().trim()
-            if (value.isBlank()) {
+            val raw = tokenField.text.toString().trim()
+            if (raw.isBlank()) {
                 toast(getString(R.string.remote_need_token)); return@button
+            }
+            /*
+             * Pehle yahan koi jaanch nahi thi - jo bhi likha ho wahi token
+             * maan liya jata tha. Isi wajah se pairing code ("maaci9gr3344",
+             * bilkul alag feature ka) chup-chaap "token" ban kar save ho
+             * gaya, aur kahin koi error nahi dikha. Ab shakal check karke
+             * mana kiya jata hai - BotFather ka token hamesha ek colon (:)
+             * ke saath aata hai, pairing code mein colon hota hi nahi.
+             */
+            val value = Remote.looksLikeToken(raw)
+            if (value == null) {
+                toast(getString(R.string.remote_bad_token)); return@button
             }
             tokenField.setText(value)
             Remote.setToken(this, value)
