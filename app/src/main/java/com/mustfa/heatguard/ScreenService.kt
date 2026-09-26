@@ -61,7 +61,7 @@ class ScreenService : Service() {
         var sendFrame = true
         try {
             while (running && System.currentTimeMillis() < deadline) {
-                if (!Shell.shizukuReady()) break
+                if (!Shell.shizukuReady() && !HgAccessibility.isEnabled()) break
                 if (sendFrame) {
                     val jpeg = Shell.captureJpeg(this)
                     if (jpeg != null) Link.publishFrame(this, jpeg)

@@ -137,8 +137,14 @@ class LinkActivity : HgActivity() {
         })
         container.addView(note(getString(R.string.link_controlled_note)))
         container.addView(spacer(dp(8)))
-        if (!Shell.shizukuReady()) {
-            container.addView(note(getString(R.string.screen_need_shizuku)))
+        if (!Shell.shizukuReady() && !HgAccessibility.isEnabled()) {
+            container.addView(note(getString(R.string.screen_need_accessibility)))
+            container.addView(button(getString(R.string.screen_open_accessibility)) {
+                Notify.startSafely(
+                    this,
+                    listOf(Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS))
+                )
+            })
         } else if (ScreenService.running) {
             container.addView(note(getString(R.string.screen_running)))
             container.addView(button(getString(R.string.screen_stop)) {

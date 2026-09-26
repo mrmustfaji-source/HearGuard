@@ -180,8 +180,18 @@ object Shell {
         return true
     }
 
-    /** Screen ki chhoti JPEG. Shizuku na ho to null. */
+    /*
+     * Screen dekhna/chalana - pehle Accessibility (HgAccessibility.kt),
+     * na ho to Shizuku. Pehle ye SIRF Shizuku se hota tha - "itni saari
+     * remote apps hain jinme Shizuku nahi lagta" (user ka sawaal, sahi
+     * tha) ke jawab mein ye tarteeb ban gayi. Accessibility ek baar ON
+     * karne se hamesha chalta hai, na koi wireless debugging na koi
+     * dobara popup.
+     */
+
+    /** Screen ki chhoti JPEG. Dono na hon to null. */
     fun captureJpeg(context: Context): ByteArray? {
+        HgAccessibility.captureJpeg()?.let { return it }
         if (!shizukuReady()) return null
         val bound = ensureBound(context) ?: return null
         val bytes = runCatching { bound.capture() }.getOrNull() ?: return null
@@ -189,41 +199,63 @@ object Shell {
     }
 
     /**
-     * `wm size` se asli pixel. Override ho to wahi, warna Physical.
-     * Na mile to null - andaza laga kar 1080 mat maano.
+     * Asli pixel size. `wm size` (Shizuku) ho to wahi, warna Android se
+     * seedha poochho - iske liye koi permission chahiye hi nahi.
      */
     fun screenPixels(context: Context): Pair<Int, Int>? {
-        if (!shizukuReady()) return null
-        val out = runAsShell(context, "wm size") ?: return null
-        val override = Regex("Override size:\\s*(\\d+)x(\\d+)").find(out)
-        val physical = Regex("Physical size:\\s*(\\d+)x(\\d+)").find(out)
-        val match = override ?: physical ?: return null
-        val w = match.groupValues[1].toIntOrNull() ?: return null
-        val h = match.groupValues[2].toIntOrNull() ?: return null
-        if (w <= 0 || h <= 0) return null
-        return w to h
+        if (shizukuReady()) {
+            val out = runAsShell(context, "wm size")
+            if (out != null) {
+                val override = Regex("Override size:\\s*(\\d+)x(\\d+)").find(out)
+                val physical = Regex("Physical size:\\s*(\\d+)x(\\d+)").find(out)
+                val match = override ?: physical
+                val w = match?.groupValues?.get(1)?.toIntOrNull()
+                val h = match?.groupValues?.get(2)?.toIntOrNull()
+                if (w != null && h != null && w > 0 && h > 0) return w to h
+            }
+        }
+        val metrics = context.resources.displayMetrics
+        return if (metrics.widthPixels > 0 && metrics.heightPixels > 0) {
+            metrics.widthPixels to metrics.heightPixels
+        } else {
+            null
+        }
     }
 
-    fun tap(context: Context, x: Int, y: Int): Boolean = inject(context, "input tap $x $y", x, y)
+    fun tap(context: Context, x: Int, y: Int): Boolean {
+        if (x < 0 || y < 0) return false
+        if (HgAccessibility.tap(x, y)) return true
+        return inject(context, "input tap $x $y")
+    }
 
     fun swipe(context: Context, x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
         if (x1 < 0 || y1 < 0 || x2 < 0 || y2 < 0) return false
-        return inject(context, "input swipe $x1 $y1 $x2 $y2 250", x1, y1)
+        if (HgAccessibility.swipe(x1, y1, x2, y2)) return true
+        return inject(context, "input swipe $x1 $y1 $x2 $y2 250")
     }
 
     /**
      * Remote pad ki keys. Sirf yahi codes - jo number user ne type kiya
-     * ho, wo seedha shell mein nahi jaata.
+     * ho, wo seedha shell mein nahi jaata. Back/Home/Recents Accessibility
+     * ke apne "global action" se milte hain - baaki (volume wagairah) ke
+     * liye aisa koi raasta nahi hai, unhe Shizuku hi chahiye.
      */
     fun key(context: Context, code: Int): Boolean {
         if (code !in KEYS) return false
+        val viaAccessibility = when (code) {
+            4 -> HgAccessibility.back()
+            3 -> HgAccessibility.home()
+            187 -> HgAccessibility.recents()
+            else -> false
+        }
+        if (viaAccessibility) return true
         if (!shizukuReady()) return false
         val out = runAsShell(context, "input keyevent $code") ?: return false
         return !out.contains("Exception", ignoreCase = true)
     }
 
-    private fun inject(context: Context, command: String, x: Int, y: Int): Boolean {
-        if (!shizukuReady() || x < 0 || y < 0) return false
+    private fun inject(context: Context, command: String): Boolean {
+        if (!shizukuReady()) return false
         val out = runAsShell(context, command) ?: return false
         return !out.contains("Exception", ignoreCase = true)
     }

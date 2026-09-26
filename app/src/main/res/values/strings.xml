@@ -198,11 +198,13 @@
     <string name="link_delay_note">Der kyun lagti hai: doosra phone jab jeb mein pada ho to Android use bar-bar jagne nahi deta. Wo har 15 minute mein jagta hai aur tabhi command dekhta hai. Phone chalu ho to jawab jaldi aata hai. Screen session alag hai - wo chalu hone par har 10 second mein tasveer aati hai.</string>
 
     <string name="screen_title">Doosre phone ki screen</string>
+    <string name="accessibility_description">Samsung se is phone ki screen dekhne aur tap/swipe/back/home/recents bhejne ke liye. Sirf tab kaam karta hai jab aap khud "Screen" session shuru karein - background mein kabhi apne aap kuch nahi karta, aur screen ka TEXT/content kabhi nahi padhta, sirf tasveer.</string>
+    <string name="screen_need_accessibility">Screen dekhne/chalane ke liye ek baar Accessibility on karni hogi (Settings mein "Heat Guard" dhoondo).</string>
+    <string name="screen_open_accessibility">Accessibility settings kholo</string>
     <string name="screen_start">Screen dikhana shuru karo</string>
     <string name="screen_open">Screen dekho aur chalao</string>
     <string name="screen_running">Screen session chalu hai</string>
     <string name="screen_stop">Session band karo</string>
-    <string name="screen_need_shizuku">Screen ke liye Shizuku chahiye. Bina uske screencap aur tap nahi chalenge.</string>
     <string name="screen_controlled_note">Ye session 10 minute chalti hai, phir khud band. Upar notification rahegi - battery lagegi, isliye kaam khatam hote hi band kar dijiye. Tasveer har 10 second mein badlegi. ntfy.sh 5 second mein ek se zyada request nahi lene deta, isliye ye video nahi hai. Tap usi der mein pahunchta hai.</string>
     <string name="screen_channel">Screen session</string>
     <string name="screen_notify_title">Screen dikha rahe hain</string>

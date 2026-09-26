@@ -155,6 +155,26 @@
             android:exported="false"
             android:label="@string/screen_title" />
 
+        <!--
+          Screen dekhna/chalana ab isi se hota hai, Shizuku se nahi - ek
+          baar Settings > Accessibility mein ON karna hai, uske baad koi
+          popup ya dobara setup nahi. exported="true" zaroori hai (system
+          isi tarah bind karta hai); permission is per-app sabhi
+          Accessibility services par lagti hai, koi doosri app ise chala
+          nahi sakti.
+        -->
+        <service
+            android:name=".HgAccessibility"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
         <service
             android:name=".ListenService"
             android:exported="false"

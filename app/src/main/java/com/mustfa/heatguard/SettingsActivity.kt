@@ -32,11 +32,22 @@ class SettingsActivity : HgActivity() {
         root.addView(button("Hindi") { pickLang(UiPref.HI) })
         root.addView(button("English") { pickLang(UiPref.EN) })
 
+        root.addView(heading(UiPref.t(this, "Screen (no setup)", "Screen dekhna (aasan)")))
+        root.addView(note(UiPref.t(
+            this,
+            "For seeing/controlling this phone's screen - one-time toggle, no wireless debugging, no pairing code.",
+            "Screen dekhne aur chalane ke liye - sirf ek baar ON karo, koi wireless debugging ya pairing code nahi chahiye."
+        )))
+        root.addView(note(if (HgAccessibility.isEnabled()) "Accessibility: ON" else "Accessibility: OFF"))
+        root.addView(button(getString(R.string.screen_open_accessibility)) {
+            Notify.startSafely(this, listOf(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)))
+        })
+
         root.addView(heading("Shell"))
         root.addView(note(UiPref.t(
             this,
-            "Android does not let a normal app tap the screen or force-stop others. This app talks to the phone's own Wireless debugging (the same door Shizuku uses). Turn that on once. If the Shizuku app is already running, this app uses it. You do not install a separate remote.",
-            "Android normal app ko tap ya force-stop nahi deta. Ye app phone ke Wireless debugging se shell leti hai - wahi darwaza jo Shizuku use karta hai. Ek baar ON karo. Shizuku pehle se chalu ho to ye app use kar leti hai. Alag remote app nahi."
+            "Only for force-stopping other apps and deep sleep - Android does not allow either without this, for any app. Screen above does not need this.",
+            "Sirf doosri app force-stop karne aur deep sleep ke liye - Android ye do kaam bina isi ke kisi ko nahi karne deta. Upar wali Screen ke liye ye zaroori NAHI hai."
         )))
         root.addView(note(if (Shell.shizukuReady()) "Shell: ON" else "Shell: OFF"))
         root.addView(button(UiPref.t(this, "Open Wireless debugging", "Wireless debugging kholo")) {
